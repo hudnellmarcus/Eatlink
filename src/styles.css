@@ -1,0 +1,33 @@
+.background {
+    background-image: url('../src/assets/pexels-ozgomz-1667427.jpeg');
+    background-size: cover;
+    
+}
+
+/* 
+button, select {
+    padding: 12px 24px;
+    margin-top: 16px;
+    border-radius: 18px;
+    background-color: #007aff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+    background-color: #005ecb;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+select {
+    width: 52%;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #007aff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+} */
