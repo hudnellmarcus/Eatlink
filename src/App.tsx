@@ -28,7 +28,7 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/get-recipe", {
+      const response = await fetch("https://eatlink-server.onrender.com/api/get-recipe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,8 +62,8 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen background">
-      <div className="flex flex-col items-center py-8">
-        <div className="flex flex-col h-[95%] w-[65%] bg-white rounded-md m-14">
+      <div className="flex flex-col items-center py-6">
+        <div className="flex flex-col h-[95%] w-[65%] bg-white rounded-md m-12">
           <Header />
           <Options
             diet={diet}
@@ -72,8 +72,12 @@ function App() {
             handleReset={handleReset}
           />
 
-          {loading || !currentRecipe ? (
-            <div>Loading...</div>
+          {loading ? <div> Loading ...</div> : null }
+
+          {!currentRecipe && !loading ? (
+            <div className="flex">
+              <h3>Choose a diet and click "ask AI for recipes" to get started!</h3>
+            </div>
           ) : (
             currentRecipe && <RecipeCard recipe={currentRecipe} />
           )}

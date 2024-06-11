@@ -3,7 +3,10 @@ export interface Recipe {
     servings: number;
     ingredients?: Ingredients[];
     instructions?: string[];
+    image: string; 
   }
+
+
 
   export interface Ingredients {
     ingredient: string;
