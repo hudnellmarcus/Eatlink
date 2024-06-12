@@ -62,8 +62,8 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen background">
-      <div className="flex flex-col items-center py-6">
-        <div className="flex flex-col h-[95%] w-[65%] bg-white rounded-md m-12">
+      <div className="flex flex-col h-screen md:h-full justify-center items-center py-6">
+        <div className="flex flex-col h-[95%] w-[90%] md:w-[65%] bg-white bg-opacity-90 rounded-md m-12">
           <Header />
           <Options
             diet={diet}

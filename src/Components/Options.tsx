@@ -9,9 +9,9 @@ interface OptionsProps {
 
 const Options = (props: OptionsProps) => {
   return (
-    <div className="flex items-center m-6 py-4 justify-center">
+    <div className="md:flex md:items-center md:m-6 md:py-4 md:justify-center">
       <form onSubmit={props.handleSubmit}>
-        <div className="flex space-x-12 py-6 px-4">
+        <div className="w-full flex space-x-12 py-6 px-4">
           <select
             id="dietSelector"
             className="rounded-full h-10 w-120 px-12 text-blue-500 justify-center"
@@ -26,13 +26,13 @@ const Options = (props: OptionsProps) => {
             <option value="paleo">Paleo</option>
             <option value="gluten-free">Gluten-Free</option>
           </select>
-          <button className="bg-blue-500 rounded-full py-2 px-10 text-white">
+        {/* <button className="bg-blue-500 rounded-full py-2 px-10 text-white">
             see what's nearby
-          </button>{" "}
+          </button>{" "}*/}
           {/*findLocalFood*/}
           <button
             type="submit"
-            className="bg-blue-500 rounded-full py-2 px-10 text-white"
+            className="bg-blue-500 rounded-full py-2 px-2 md:px-10 text-white"
             onClick={props.handleReset}
           >
             ask AI for recipes
