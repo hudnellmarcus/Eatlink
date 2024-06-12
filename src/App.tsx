@@ -75,7 +75,7 @@ function App() {
           {loading ? <div> Loading ...</div> : null }
 
           {!currentRecipe && !loading ? (
-            <div className="flex">
+            <div className="flex m-6">
               <h3>Choose a diet and click "ask AI for recipes" to get started!</h3>
             </div>
           ) : (
