@@ -1,14 +1,13 @@
-import logo from "../assets/eatlink.logo.png"; 
-
+import { ReactComponent as EatLinkLogo } from "../assets/eatlingologo3.svg";
 
 const Header = () => {
   return (
-    <div className="flex flex-col w-full items-center">
-        <img src={logo} alt="vegetables" className="h-auto w-[30%]"/>
-        <h1 className="text-[2rem]">Eatlink</h1>
-        <h3>find food for your diet</h3>
-    </div>
-  )
-}
+    <header>
+      <div className="flex flex-col w-full items-center">
+        <EatLinkLogo />
+      </div>
+    </header>
+  );
+};
 
-export default Header
+export default Header; 
