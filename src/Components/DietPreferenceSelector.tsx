@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import UserPreferencesStore, { Preference } from "../utils/userPreferencesStore";
 import { ReactComponent as Salad } from "../assets/salad.svg";
 import dietStepImage from "../assets/LandingStatus1.png";
 import Header from "./Header";
 
-export interface DietPreference {
-  id: number;
-  name: string;
-}
 
-export const dietOptions: DietPreference[] = [
+
+export const dietOptions: Preference[] = [
   { id: 1, name: "low carb" },
   { id: 2, name: "vegan" },
   { id: 3, name: "vegetarian" },
@@ -18,12 +17,16 @@ export const dietOptions: DietPreference[] = [
 ];
 
 const DietPreferenceSelector: React.FC = () => {
-  const [selectedPreferences, setSelectedPreferences] = useState<number[]>([]);
+  const { setDietPreferences, resetPreferences } = UserPreferencesStore();
+  const navigate = useNavigate();
+
+  const [selectedPreferences, setSelectedPreferences] = useState<Preference[]>([]);
   const [showingFirstSet, setShowingFirstSet] = useState(true);
 
-  const togglePreference = (id: number) => {
+  const togglePreference = (preference: Preference) => {
     setSelectedPreferences((prev) =>
-      prev.includes(id) ? prev.filter((prefId) => prefId !== id) : [...prev, id]
+      prev.some(p => p.id === preference.id) 
+      ? prev.filter(p => p.id !== preference.id) : [...prev, preference]
     );
   };
 
@@ -34,6 +37,16 @@ const DietPreferenceSelector: React.FC = () => {
   const currentOptions = showingFirstSet
     ? dietOptions.slice(0, 3)
     : dietOptions.slice(3, 6);
+
+  const handleNext = () => {
+    setDietPreferences(selectedPreferences);
+    navigate('/allergies'); 
+  };
+
+  //Reset the preferences 
+  useEffect(() => {
+    resetPreferences();
+  }, [resetPreferences]);
 
   return (
     <>
@@ -48,9 +61,9 @@ const DietPreferenceSelector: React.FC = () => {
         {currentOptions.map((pref) => (
           <button
             key={pref.id}
-            onClick={() => togglePreference(pref.id)}
+            onClick={() => togglePreference(pref)}
             className={`px-4 py-2 w-36 my-4 rounded-full ${
-              selectedPreferences.includes(pref.id)
+              selectedPreferences.some(selectedPref => selectedPref.id === pref.id)
                 ? "bg-blue-500 text-white"
                 : "bg-gray-500 text-white"
             }`}
@@ -66,7 +79,7 @@ const DietPreferenceSelector: React.FC = () => {
             {showingFirstSet ? "see more" : "go back"}
           </span>
           <span className="text-black hover:text-blue-500 cursor-pointer underline">
-            next
+            <button onClick={handleNext}>next</button>
           </span>
         </div>
       </div>

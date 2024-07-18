@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import useUserPreferencesStore, { Preference } from "../utils/userPreferencesStore";
 import { ReactComponent as Peanut } from "../assets/.svg";
 import allergyImage from "../assets/Landing2.png";
 import Header from "./Header";
@@ -18,12 +20,15 @@ export const dietOptions: DietPreference[] = [
 ];
 
 const AllergyPreferenceSelector: React.FC = () => {
-  const [selectedPreferences, setSelectedPreferences] = useState<number[]>([]);
+  const { allergies, setAllergies } = useUserPreferencesStore();
+  const navigate = useNavigate();
+
+  const [selectedPreferences, setSelectedPreferences] = useState<Preference[]>([]);
   const [showingFirstSet, setShowingFirstSet] = useState(true);
 
-  const togglePreference = (id: number) => {
-    setSelectedPreferences((prev) =>
-      prev.includes(id) ? prev.filter((prefId) => prefId !== id) : [...prev, id]
+  const togglePreference = (preference: Preference) => {
+    setSelectedPreferences((prev) =>  prev.some(p => p.id === preference.id) 
+    ? prev.filter(p => p.id !== preference.id) : [...prev, preference]
     );
   };
 
@@ -34,6 +39,11 @@ const AllergyPreferenceSelector: React.FC = () => {
   const currentOptions = showingFirstSet
     ? dietOptions.slice(0, 3)
     : dietOptions.slice(3, 6);
+
+  const handleNext = () => {
+    setAllergies(selectedPreferences);
+    navigate("/confirm");
+  };
 
   return (
     <>
@@ -47,9 +57,9 @@ const AllergyPreferenceSelector: React.FC = () => {
         {currentOptions.map((pref) => (
           <button
             key={pref.id}
-            onClick={() => togglePreference(pref.id)}
+            onClick={() => togglePreference(pref)}
             className={`px-4 py-2 w-36 my-4 rounded-full ${
-              selectedPreferences.includes(pref.id)
+              selectedPreferences.some(selectedPref => selectedPref.id === pref.id)
                 ? "bg-blue-500 text-white"
                 : "bg-gray-500 text-white"
             }`}
@@ -63,6 +73,12 @@ const AllergyPreferenceSelector: React.FC = () => {
             className="text-black hover:text-blue-500 cursor-pointer underline"
           >
             {showingFirstSet ? "see more" : "go back"}
+          </span>
+          <span
+            onClick={handleNext}
+            className="text-black hover:text-blue-500 cursor-pointer underline"
+          >
+            next
           </span>
         </div>
       </div>
