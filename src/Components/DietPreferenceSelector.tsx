@@ -30,18 +30,22 @@ const DietPreferenceSelector: React.FC = () => {
     );
   };
 
+  
   const toggleOptionSet = () => {
     setShowingFirstSet((prev) => !prev);
   };
 
+  
   const currentOptions = showingFirstSet
     ? dietOptions.slice(0, 3)
     : dietOptions.slice(3, 6);
 
-  const handleNext = () => {
+  
+    const handleNext = () => {
     setDietPreferences(selectedPreferences);
-    navigate('/allergies'); 
+    navigate('/preferences/allergies'); 
   };
+
 
   //Reset the preferences 
   useEffect(() => {

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import useUserPreferencesStore, { Preference } from "../utils/userPreferencesStore";
-import { ReactComponent as Peanut } from "../assets/.svg";
 import allergyImage from "../assets/Landing2.png";
 import Header from "./Header";
 
@@ -20,30 +19,36 @@ export const dietOptions: DietPreference[] = [
 ];
 
 const AllergyPreferenceSelector: React.FC = () => {
-  const { allergies, setAllergies } = useUserPreferencesStore();
+  const { setAllergies } = useUserPreferencesStore();
   const navigate = useNavigate();
 
   const [selectedPreferences, setSelectedPreferences] = useState<Preference[]>([]);
   const [showingFirstSet, setShowingFirstSet] = useState(true);
 
+  
   const togglePreference = (preference: Preference) => {
     setSelectedPreferences((prev) =>  prev.some(p => p.id === preference.id) 
     ? prev.filter(p => p.id !== preference.id) : [...prev, preference]
     );
   };
 
+
   const toggleOptionSet = () => {
     setShowingFirstSet((prev) => !prev);
   };
+
 
   const currentOptions = showingFirstSet
     ? dietOptions.slice(0, 3)
     : dietOptions.slice(3, 6);
 
+
   const handleNext = () => {
     setAllergies(selectedPreferences);
-    navigate("/confirm");
+    navigate("/preferences/confirm");
   };
+
+
 
   return (
     <>

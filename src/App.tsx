@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
 import "./styles.css";
-import { LandingPage } from "./Pages/LandingPage";
+import { Routes, Route, Navigate } from "react-router-dom";
 import UserPreferencesFlow from "./Pages/UserPreferencesFlow";
+import Results from "./Pages/Results";
+import Landing from "./Pages/Landing";
 
 function App() {
   return (
-    <UserPreferencesFlow />
-  )
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/preferences/*" element={<UserPreferencesFlow />} />
+      <Route path="/results" element={<Results />} />
+    </Routes>
+  );
 }
 
 export default App;

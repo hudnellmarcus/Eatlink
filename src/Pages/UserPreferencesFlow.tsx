@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import DietPreferenceSelector from "../Components/DietPreferenceSelector";
 import AllergyPreferenceSelector from "../Components/AllergySelector";
 import Summary from "../Components/Summary";
@@ -20,9 +20,10 @@ useEffect(() => {
 
   return (
     <Routes>
-      <Route path="/" element={<DietPreferenceSelector />} />
-      <Route path="/allergies" element={<AllergyPreferenceSelector />} />
-      <Route path="/confirm" element={<Summary />} />
+      <Route path="diet" element={<DietPreferenceSelector />} />
+      <Route path="allergies" element={<AllergyPreferenceSelector />} />
+      <Route path="confirm" element={<Summary />} />
+      <Route path="*" element={<Navigate to="/diet" />} />
     </Routes>
   )
 };
