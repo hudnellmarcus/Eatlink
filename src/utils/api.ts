@@ -43,6 +43,7 @@ export const getNearbyRestaurants = async ({location }: getNearbyRestaurantsPara
 
     try {
         const response = await axios.post(`${API_URL}/api/nearby-restaurants`, { location });
+        console.log('Response:', response.data);
         return response.data;
     } catch (error) {
         console.error('Error fetching nearby restaurants:', error);

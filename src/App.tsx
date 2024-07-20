@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import UserPreferencesFlow from "./Pages/UserPreferencesFlow";
 import Results from "./Pages/Results";
 import Landing from "./Pages/Landing";

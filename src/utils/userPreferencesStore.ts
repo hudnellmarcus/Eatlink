@@ -1,20 +1,5 @@
 import { create } from "zustand";
-
-export interface Preference {
-    id: number;
-    name: string;
-}; 
-
-interface UserPreferences {
-    dietPreferences: Preference[];
-    allergies: Preference[];
-};
-
-interface UserPreferencesStore extends UserPreferences {
-    setDietPreferences: (preferences: Preference[]) => void;
-    setAllergies: (allergies: Preference[]) => void;
-    resetPreferences: () => void;
-};
+import { UserPreferencesStore } from "../types/types";
 
 const useUserPreferencesStore = create<UserPreferencesStore>((set) => ({
     dietPreferences: [],

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import UserPreferencesStore, { Preference } from "../utils/userPreferencesStore";
+import UserPreferencesStore from "../utils/userPreferencesStore";
+import { Preference } from "../types/types";
 import { ReactComponent as Salad } from "../assets/salad.svg";
 import dietStepImage from "../assets/LandingStatus1.png";
 import Header from "./Header";

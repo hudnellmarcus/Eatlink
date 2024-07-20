@@ -1,11 +1,8 @@
 import { useLocation, Navigate } from "react-router-dom";
+import RestaurantCard from "../Components/RestaurantCard";
+import { Restaurant } from "../types/types";
 
-interface Restaurant {
-    id: string;
-    name: string;
-    rating: number;
-    address:string; 
-}
+
 
 
 interface LocationState {
@@ -33,9 +30,7 @@ const Results: React.FC = () => {
                 <ul>
                     {restaurants.map((restaurant) => (
                         <li key={restaurant.id}>
-                            <h2>{restaurant.name}</h2>
-                            <p>Rating: {restaurant.rating}</p>
-                            <p>Address: {restaurant.address}</p>
+                          <RestaurantCard key={restaurant.id} {...restaurant} />
                         </li>
                     ))}
                 </ul>

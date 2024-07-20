@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import useUserPreferencesStore, { Preference } from "../utils/userPreferencesStore";
+import useUserPreferencesStore from "../utils/userPreferencesStore";
+import { Preference } from "../types/types";
 import allergyImage from "../assets/Landing2.png";
 import Header from "./Header";
+import { DietPreference } from "../types/types";
 
-export interface DietPreference {
-  id: number;
-  name: string;
-}
 
 export const dietOptions: DietPreference[] = [
   { id: 1, name: "dairy" },
@@ -25,7 +23,7 @@ const AllergyPreferenceSelector: React.FC = () => {
   const [selectedPreferences, setSelectedPreferences] = useState<Preference[]>([]);
   const [showingFirstSet, setShowingFirstSet] = useState(true);
 
-  
+
   const togglePreference = (preference: Preference) => {
     setSelectedPreferences((prev) =>  prev.some(p => p.id === preference.id) 
     ? prev.filter(p => p.id !== preference.id) : [...prev, preference]
