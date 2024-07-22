@@ -22,8 +22,8 @@ const Results: React.FC = () => {
 
 
     return (
-        <div>
-            <h1>Restaurants Near You</h1>
+        <div className="flex flex-col items-center">
+            <h1 className="mt-6 py-6">Restaurants Near You</h1>
             {restaurants.length === 0 ? (
                 <p>No restaurants found.</p>
             ) : (

@@ -26,12 +26,16 @@ export interface UserPreferencesStore extends UserPreferences {
     resetPreferences: () => void;
 };
 
-
+interface Category {
+    alias: string;
+    title: string;
+}
  export interface Restaurant {
     id: string
     name: string;
     image_url: string;
     rating: number;
+    categories: Category[];
     reviews?: number;
     distance: number;
     price?: number;
@@ -41,7 +45,6 @@ export interface UserPreferencesStore extends UserPreferences {
     deliveryType?: string;
     deliveryOptions?: string[];
     paymentOptions?: string[];
-    cuisine: string;
     location?: string;
     description?: string;
     menu?: string[];
